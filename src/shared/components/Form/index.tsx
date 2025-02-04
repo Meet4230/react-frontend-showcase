@@ -72,6 +72,7 @@ interface DynamicFormProps {
 
 const Form: React.FC<DynamicFormProps> = ({ type }) => {
   const navigate = useNavigate();
+  const [error, setError] = React.useState<string | null>(null);
   // Dynamic schema based on form type
   const FormFieldSchema = createFormSchema(type);
   type FormData = z.infer<typeof FormFieldSchema>;
@@ -85,13 +86,22 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
     resolver: zodResolver(FormFieldSchema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    const config = formConfig[type];
-    postRequest(config.endpoint, data);
-    if (config["title"] === "Sign Up") {
-      navigate("/login");
-    } else {
-      navigate("/");
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      setError(null);
+      const config = formConfig[type];
+      await postRequest(config.endpoint, data);
+
+      if (config["title"] === "Sign Up") {
+        navigate("/login");
+      } else {
+        navigate("/dashboard");
+      }
+    } catch (err) {
+      if (err instanceof Error) {
+        setError(err.message);
+      }
+      console.error("Form submission error:", err);
     }
   };
 
@@ -103,6 +113,11 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
         <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
           {config.title}
         </h2>
+        {error && (
+          <div className="mb-4 p-3 rounded bg-red-50 border border-red-200 text-red-600">
+            {error}
+          </div>
+        )}
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           {config.fields.map((field) => (
             <div key={field.name}>
