@@ -165,7 +165,7 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
             {isSubmitting ? "Submitting" : config.title}
           </Button>
 
-          {config.title === "Sign Up" && (
+          {config.title === "Sign Up" ? (
             <div className="flex justify-around">
               <span className="">
                 Already User ?
@@ -174,6 +174,17 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
                 </Link>
               </span>
             </div>
+          ) : (
+            config.title === "Login" && (
+              <div className="flex justify-around">
+                <span className="">
+                  Don't have an account ?
+                  <Link to="/" className="underline">
+                    Sign Up
+                  </Link>
+                </span>
+              </div>
+            )
           )}
         </form>
       </div>

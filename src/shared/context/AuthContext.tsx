@@ -9,14 +9,7 @@ import { CURRENT_USER, LOGOUT_USER } from "../constants/apiRoutes";
 import { getRequest, postRequest } from "../api";
 import { useLocation } from "react-router-dom";
 import { removeItem } from "../utils/localstorage";
-
-export interface User {
-  username: string;
-  avatar: string;
-  role: string;
-  email: string;
-  accessToken: string;
-}
+import { User } from "../Interfaces";
 
 interface AuthContextProps {
   user: User | null;

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { DEFAULT_AVATAR } from "../../../constants";
 import { CloseIcon, MenuIcon } from "../../Icons";
-import { User } from "../../../context/AuthContext";
+import { User } from "../../../Interfaces";
 
 interface INavProps {
   user: User | null;
@@ -20,9 +20,7 @@ export const Nav = ({
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="flex items-center justify-between h-16">
         <div className="flex items-center">
-          <Link to="/" className="flex-shrink-0">
-            <span className="font-bold text-xl">React Showcase</span>
-          </Link>
+          <span className="font-bold text-xl">React Showcase</span>
         </div>
         <div className="items-center hidden md:block">
           <div className="ml-10 flex items-baseline space-x-4">

@@ -3,12 +3,14 @@ import Login from "../pages/Login";
 import AppLayout from "../components/AppLayout";
 import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
+import ProtectedRoute from "../components/ProtectedRoute";
+import NotFound from "../pages/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <AppLayout />,
-    errorElement: <div>Not Found</div>,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
@@ -22,7 +24,11 @@ export const router = createBrowserRouter([
 
       {
         path: "/dashboard",
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute allowedRoles="USER">
+            <Dashboard />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
