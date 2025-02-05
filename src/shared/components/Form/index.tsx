@@ -3,9 +3,10 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postRequest } from "../../api";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { LOGIN_USER, REGISTER_USER } from "../../constants/apiRoutes";
+import usePersistState from "../../hooks/usePersistState";
 
 // Define form types
 type FormType = "signup" | "login";
@@ -73,6 +74,14 @@ interface DynamicFormProps {
 const Form: React.FC<DynamicFormProps> = ({ type }) => {
   const navigate = useNavigate();
   const [error, setError] = React.useState<string | null>(null);
+  const [accessToken, setAcessToken] = usePersistState<string>(
+    "accessToken",
+    ""
+  );
+  const [refreshToken, setRefreshToken] = usePersistState<string>(
+    "refreshToken",
+    ""
+  );
   // Dynamic schema based on form type
   const FormFieldSchema = createFormSchema(type);
   type FormData = z.infer<typeof FormFieldSchema>;
@@ -90,12 +99,19 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
     try {
       setError(null);
       const config = formConfig[type];
-      await postRequest(config.endpoint, data);
+      const response = await postRequest(config.endpoint, data);
+      const { accessToken, refreshToken } = response.data;
+      setAcessToken(accessToken);
+      setRefreshToken(refreshToken);
 
       if (config["title"] === "Sign Up") {
         navigate("/login");
       } else {
-        navigate("/dashboard");
+        setAcessToken(accessToken);
+        setRefreshToken(refreshToken);
+        setTimeout(() => {
+          navigate("/dashboard"); // Add delay to ensure token persistence
+        }, 100);
       }
     } catch (err) {
       if (err instanceof Error) {
@@ -148,6 +164,17 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
           >
             {isSubmitting ? "Submitting" : config.title}
           </Button>
+
+          {config.title === "Sign Up" && (
+            <div className="flex justify-around">
+              <span className="">
+                Already User ?
+                <Link to="/login" className="underline">
+                  Login
+                </Link>
+              </span>
+            </div>
+          )}
         </form>
       </div>
     </div>

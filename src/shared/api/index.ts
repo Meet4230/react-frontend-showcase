@@ -3,6 +3,7 @@ import axios, {
   InternalAxiosRequestConfig,
   AxiosRequestConfig,
 } from "axios";
+import { getItem } from "../utils/localstorage";
 
 interface ErrorResponse {
   statusCode?: number;
@@ -24,7 +25,8 @@ const api = axios.create({
 // Request Interceptor
 api.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = localStorage.getItem("accessToken");
+    const token = getItem("accessToken");
+
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`;
     }
@@ -41,7 +43,7 @@ api.interceptors.response.use(
 
     if (error.response?.status === 401) {
       try {
-        const refreshToken = localStorage.getItem("refreshToken");
+        const refreshToken = getItem("refreshToken");
         if (refreshToken) {
           const response = await axios.post("/refreshtoken", { refreshToken });
           const { token } = response.data;
@@ -53,7 +55,7 @@ api.interceptors.response.use(
       } catch (refreshError) {
         localStorage.removeItem("accessToken");
         localStorage.removeItem("refreshToken");
-        window.location.href = "/";
+        window.location.href = "/login";
       }
     }
 
@@ -105,7 +107,7 @@ export const getRequest = async <T>(
 //  POST Request
 export const postRequest = async <T>(
   url: string,
-  data: unknown,
+  data?: unknown,
   config?: AxiosRequestConfig
 ): Promise<T | undefined> => {
   try {
