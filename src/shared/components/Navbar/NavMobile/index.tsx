@@ -1,7 +1,13 @@
 import { Link } from "react-router-dom";
 import { DEFAULT_AVATAR } from "../../../constants";
+import { User } from "../../../Interfaces";
 
-export const NavMobile = ({ isOpen, user, onclick }: any) => {
+interface INavMobileProps {
+  user: User | null;
+  handleLogout: () => void;
+  isOpen: boolean;
+}
+export const NavMobile = ({ isOpen, user, handleLogout }: INavMobileProps) => {
   return (
     <div>
       {isOpen && (
@@ -27,7 +33,7 @@ export const NavMobile = ({ isOpen, user, onclick }: any) => {
                     </div>
                   </div>
                   <span
-                    onClick={onclick}
+                    onClick={handleLogout}
                     className="text-red-500 cursor-pointer hover:underline text-sm"
                   >
                     Logout

@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
         handleToggle={toggleMenu}
         isOpen={isOpen}
       />
-      <NavMobile user={user} isOpen={isOpen} onClick={handleLogout} />
+      <NavMobile user={user} isOpen={isOpen} handleLogout={handleLogout} />
     </nav>
   );
 };
