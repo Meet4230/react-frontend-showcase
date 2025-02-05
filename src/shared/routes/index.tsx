@@ -5,6 +5,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
+import UserProfilePage from "../pages/UserProfilePage";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,15 @@ export const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <Dashboard />
+          </ProtectedRoute>
+        ),
+      },
+
+      {
+        path: "/profile/:_id",
+        element: (
+          <ProtectedRoute>
+            <UserProfilePage />
           </ProtectedRoute>
         ),
       },

@@ -21,7 +21,7 @@ export const NavMobile = ({ isOpen, user, handleLogout }: INavMobileProps) => {
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
                     <img
-                      src={DEFAULT_AVATAR}
+                      src={user.avatar.url || DEFAULT_AVATAR}
                       alt="User Avatar"
                       className="w-8 h-8 rounded-full object-cover"
                     />

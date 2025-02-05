@@ -33,11 +33,14 @@ export const Nav = ({
               {user && (
                 <div className="flex items-center space-x-4">
                   <div className="flex items-center space-x-2">
-                    <img
-                      src={DEFAULT_AVATAR}
-                      alt="User Avatar"
-                      className="w-8 h-8 rounded-full object-cover"
-                    />
+                    <Link to={`/profile/${user?._id}`}>
+                      <img
+                        src={user.avatar.url || DEFAULT_AVATAR}
+                        alt="User Avatar"
+                        className="w-8 h-8 rounded-full object-cover"
+                      />
+                    </Link>
+
                     <div className="flex flex-col">
                       <strong className="text-sm">{user?.username}</strong>
                       <span className="text-xs text-gray-500">

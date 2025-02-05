@@ -15,6 +15,7 @@ interface AuthContextProps {
   user: User | null;
   handleLogout: () => void;
   isLoading: boolean;
+  refreshUser: () => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextProps | undefined>(undefined);
@@ -75,7 +76,14 @@ export function AuthProvider({ children }: AuthProviderProps) {
   }
 
   return (
-    <AuthContext.Provider value={{ user, handleLogout, isLoading }}>
+    <AuthContext.Provider
+      value={{
+        user,
+        handleLogout,
+        isLoading,
+        refreshUser: getCurrentUser,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
