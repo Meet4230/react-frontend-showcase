@@ -5,7 +5,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
-import UserProfilePage from "../pages/UserProfilePage";
+import UserProfilePage from "../pages/UserProfile/UserProfilePage";
 
 export const router = createBrowserRouter([
   {

@@ -1,12 +1,7 @@
 import { Link } from "react-router-dom";
 import { DEFAULT_AVATAR } from "../../../constants";
-import { User } from "../../../Interfaces";
+import { INavMobileProps } from "../../../Interfaces";
 
-interface INavMobileProps {
-  user: User | null;
-  handleLogout: () => void;
-  isOpen: boolean;
-}
 export const NavMobile = ({ isOpen, user, handleLogout }: INavMobileProps) => {
   return (
     <div>

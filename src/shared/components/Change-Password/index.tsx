@@ -63,60 +63,64 @@ export default function ChangePassword({ onClose }: ChangePasswordProps) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div className="bg-white p-6 rounded-lg shadow-md max-w-sm w-full relative">
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md max-w-sm w-full relative">
         <button
           onClick={onClose}
-          className="absolute top-2 right-2 text-gray-500 hover:text-red-500"
+          className="absolute top-2 right-2 text-gray-500 hover:text-red-500 dark:text-gray-300 dark:hover:text-red-400"
         >
           ✕
         </button>
 
-        <h2 className="text-xl font-semibold mb-4">Change Password</h2>
+        <h2 className="text-xl font-semibold mb-4 text-gray-800 dark:text-white">
+          Change Password
+        </h2>
         {passwordMessage && (
           <h3 className="text-sm text-green-600 mb-2">{passwordMessage}</h3>
         )}
 
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Current Password
             </label>
             <input
               type="password"
               {...register("currentPassword")}
-              className="mt-1 p-2 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
+              className="mt-1 p-2 w-full border rounded-md focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
             {errors.currentPassword && (
-              <div className="text-red-500">
-                {errors.currentPassword.message}{" "}
+              <div className="text-red-500 dark:text-red-400">
+                {errors.currentPassword.message}
               </div>
             )}
           </div>
           <div className="mb-3">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               New Password
             </label>
             <input
               type="password"
               {...register("newPassword")}
-              className="mt-1 p-2 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
+              className="mt-1 p-2 w-full border rounded-md focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
             {errors.newPassword && (
-              <div className="text-red-500">{errors.newPassword.message} </div>
+              <div className="text-red-500 dark:text-red-400">
+                {errors.newPassword.message}
+              </div>
             )}
           </div>
           <div className="mb-3">
-            <label className="block text-sm font-medium text-gray-700">
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
               Confirm Password
             </label>
             <input
               type="password"
               {...register("confirmPassword")}
-              className="mt-1 p-2 w-full border rounded-md focus:ring-2 focus:ring-blue-400"
+              className="mt-1 p-2 w-full border rounded-md focus:ring-2 focus:ring-blue-400 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
             {errors.confirmPassword && (
-              <div className="text-red-500">
-                {errors.confirmPassword.message}{" "}
+              <div className="text-red-500 dark:text-red-400">
+                {errors.confirmPassword.message}
               </div>
             )}
           </div>
@@ -125,7 +129,7 @@ export default function ChangePassword({ onClose }: ChangePasswordProps) {
             disabled={isSubmitting}
             className={`w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600 transition duration-300 ${
               isSubmitting ? "opacity-50 cursor-not-allowed" : ""
-            }`}
+            } dark:bg-blue-700 dark:hover:bg-blue-600`}
           >
             {isSubmitting ? "Updating..." : "Change Password"}
           </button>

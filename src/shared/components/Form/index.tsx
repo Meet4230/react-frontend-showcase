@@ -124,13 +124,13 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
   const config = formConfig[type];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="bg-white p-8 rounded-lg shadow-md w-96">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md w-96 transition-colors duration-300">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800 dark:text-gray-200">
           {config.title}
         </h2>
         {error && (
-          <div className="mb-4 p-3 rounded bg-red-50 border border-red-200 text-red-600">
+          <div className="mb-4 p-3 rounded bg-red-50 dark:bg-red-900 border border-red-200 dark:border-red-700 text-red-600 dark:text-red-200">
             {error}
           </div>
         )}
@@ -139,7 +139,7 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
             <div key={field.name}>
               <label
                 htmlFor={field.name}
-                className="block text-sm font-medium text-gray-700 mb-1"
+                className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
               >
                 {field.label}
               </label>
@@ -147,10 +147,10 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
                 type={field.type}
                 id={field.name}
                 {...register(field.name as keyof FormData)}
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100"
               />
               {errors[field.name as keyof typeof errors] && (
-                <div className="text-red-500 text-sm mt-1">
+                <div className="text-red-500 dark:text-red-400 text-sm mt-1">
                   {errors[field.name as keyof typeof errors]?.message}
                 </div>
               )}
@@ -158,7 +158,7 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
           ))}
           <Button
             type="submit"
-            className="w-full  text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-300"
+            className="w-full text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:ring-offset-2 dark:focus:ring-offset-gray-800 transition-colors duration-300"
             disabled={isSubmitting}
             variant="danger"
           >
@@ -167,9 +167,12 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
 
           {config.title === "Sign Up" ? (
             <div className="flex justify-around">
-              <span className="">
-                Already User ?
-                <Link to="/login" className="underline">
+              <span className="text-gray-600 dark:text-gray-400">
+                Already User?{" "}
+                <Link
+                  to="/login"
+                  className="underline text-blue-500 dark:text-blue-400"
+                >
                   Login
                 </Link>
               </span>
@@ -177,9 +180,12 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
           ) : (
             config.title === "Login" && (
               <div className="flex justify-around">
-                <span className="">
-                  Don't have an account ?
-                  <Link to="/" className="underline">
+                <span className="text-gray-600 dark:text-gray-400">
+                  Don't have an account?{" "}
+                  <Link
+                    to="/"
+                    className="underline text-blue-500 dark:text-blue-400"
+                  >
                     Sign Up
                   </Link>
                 </span>

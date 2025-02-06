@@ -4,11 +4,7 @@ import {
   LINKEDIN_ACCOUNT,
   TWITTER_ACCOUNT,
 } from "../../constants";
-
-interface FooterLink {
-  href: string;
-  label: string;
-}
+import { FooterLink } from "../../Interfaces";
 
 const footerLinks: FooterLink[] = [
   { href: `https://github.com/${GITHUB_ACCOUNT}`, label: "GitHub" },
