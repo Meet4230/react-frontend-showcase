@@ -6,7 +6,7 @@ export const projects: DashboardCardProps[] = [
     description:
       "A sleek and efficient task management app built with React. Features include drag-and-drop reordering, priority levels, and due dates. Utilizes local storage for data persistence and context API for state management.",
     image: "/src/assets/todo.avif",
-    link: "/todo-list",
+    link: "/todo-app",
   },
   {
     title: "E-commerce",

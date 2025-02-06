@@ -6,6 +6,7 @@ import Dashboard from "../pages/Dashboard";
 import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
 import UserProfilePage from "../pages/UserProfile/UserProfilePage";
+import Todo from "../../features/todo-list/pages/Todo";
 
 export const router = createBrowserRouter([
   {
@@ -39,6 +40,11 @@ export const router = createBrowserRouter([
             <UserProfilePage />
           </ProtectedRoute>
         ),
+      },
+
+      {
+        path: "/todo-app",
+        element: <Todo />,
       },
     ],
   },

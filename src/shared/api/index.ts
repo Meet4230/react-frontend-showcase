@@ -95,7 +95,7 @@ const handleRequestError = (error: unknown) => {
 export const getRequest = async <T>(
   url: string,
   config?: AxiosRequestConfig
-): Promise<T | undefined> => {
+): Promise<any> => {
   try {
     const response = await api.get<T>(url, config);
     return response.data;
