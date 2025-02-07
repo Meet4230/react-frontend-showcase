@@ -74,6 +74,11 @@
   flex-grow: 1;
 }
 
+.todo-content.completed {
+  text-decoration: line-through;
+  color: gray; /* Optional: Make the text gray to indicate completion */
+}
+
 .todo-title {
   font-size: 1.2rem;
   color: #333;
@@ -119,4 +124,199 @@
   color: #f44336;
   text-align: center;
   margin-top: 20px;
+}
+
+.todo-view-container {
+  max-width: 800px;
+  height: 463px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.todo-view-header {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.todo-view-card {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.todo-view-status {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.todo-view-status .icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.todo-view-status .icon.complete {
+  color: #4caf50; /* Green for completed todos */
+}
+
+.todo-view-status .icon.incomplete {
+  color: #ff9800; /* Orange for incomplete todos */
+}
+
+.todo-view-status-text {
+  font-size: 1rem;
+  color: #666;
+}
+
+.todo-view-title {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0 0 10px;
+}
+
+.todo-view-description {
+  font-size: 1rem;
+  color: #666;
+  margin: 0;
+}
+
+.error-message {
+  color: #f44336;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.todo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.todo-item:hover {
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.edit-mode {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.edit-mode input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.edit-mode button {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.edit-mode button:first-of-type {
+  background-color: #28a745;
+  color: white;
+}
+
+.edit-mode button:first-of-type:hover {
+  background-color: #218838;
+}
+
+.edit-mode button:last-of-type {
+  background-color: #dc3545;
+  color: white;
+}
+
+.edit-mode button:last-of-type:hover {
+  background-color: #c82333;
+}
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
 }

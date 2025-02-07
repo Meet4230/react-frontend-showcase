@@ -15,14 +15,14 @@ const Navbar: React.FC = () => {
 
   if (isLoading) {
     return (
-      <div>
+      <div className="flex w-full h-screen justify-center items-center">
         <Loading />
       </div>
     );
   }
 
   return (
-    <nav className="bg-gray-800 text-white">
+    <nav className="bg-gray-800 text-white ">
       <Nav
         user={user}
         handleLogout={handleLogout}
