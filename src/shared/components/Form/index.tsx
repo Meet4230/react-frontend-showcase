@@ -1,5 +1,5 @@
-import React from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import React, { useEffect } from "react";
+import { useForm, SubmitHandler, get } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { postRequest } from "../../api";
@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Button from "../Button";
 import { LOGIN_USER, REGISTER_USER } from "../../constants/apiRoutes";
 import usePersistState from "../../hooks/usePersistState";
+import { getItem } from "../../utils/localstorage";
 
 // Define form types
 type FormType = "signup" | "login";
@@ -82,6 +83,13 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
     "refreshToken",
     ""
   );
+
+  const isAuthenticated = getItem("accessToken");
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/dashboard", { replace: true }); // Redirect logged-in users
+    }
+  }, [isAuthenticated, navigate]);
   // Dynamic schema based on form type
   const FormFieldSchema = createFormSchema(type);
   type FormData = z.infer<typeof FormFieldSchema>;
@@ -109,9 +117,7 @@ const Form: React.FC<DynamicFormProps> = ({ type }) => {
       } else {
         setAcessToken(accessToken);
         setRefreshToken(refreshToken);
-        setTimeout(() => {
-          navigate("/dashboard"); // Add delay to ensure token persistence
-        }, 100);
+        navigate("/dashboard"); // Add delay to ensure token persistence
       }
     } catch (err) {
       if (err instanceof Error) {
