@@ -7,8 +7,8 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
 import UserProfilePage from "../pages/UserProfile/UserProfilePage";
 import Todo from "../../features/todo-list/pages/Todo";
-import Products from "../../features/ecommerce/pages/Product";
 import Admin from "../../features/ecommerce/pages/Admin";
+import HomePage from "../../features/ecommerce/pages/HomePage";
 
 export const router = createBrowserRouter([
   {
@@ -51,7 +51,7 @@ export const router = createBrowserRouter([
 
       {
         path: "/e-commerce",
-        element: <Products />,
+        element: <HomePage />,
       },
       {
         path: "/admin",

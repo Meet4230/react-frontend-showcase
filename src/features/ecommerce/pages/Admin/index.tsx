@@ -197,7 +197,7 @@ export default function AdminCreateProduct() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="649865ab297b287175aec1d7">
+                        <SelectItem value="67a75a0381efa8b9fe53f417">
                           Category 1
                         </SelectItem>
                       </SelectContent>
