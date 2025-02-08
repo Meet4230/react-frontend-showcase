@@ -10,7 +10,16 @@ export const Nav = ({
   handleToggle,
   isOpen,
 }: INavProps) => {
-  const { theme, toggleTheme } = useTheme(); // Access theme and toggleTheme from context
+  const { theme, toggleTheme } = useTheme();
+  const publicRoutes = [
+    "/",
+    "/login",
+    "/todo-app",
+    "/forgot-password",
+    "/dashboard",
+  ];
+
+  let preventTodoRoutes = !publicRoutes.includes(location.pathname);
 
   return (
     <div
@@ -28,7 +37,6 @@ export const Nav = ({
           </div>
 
           <div className="flex items-center space-x-6 ml-auto">
-            {/* User Details and Logout */}
             {user && (
               <div className="flex items-center space-x-4">
                 <div className="flex items-center space-x-2">
@@ -55,19 +63,24 @@ export const Nav = ({
                 >
                   Logout
                 </span>
+                {user && user?.role === "ADMIN" && preventTodoRoutes && (
+                  <Link
+                    to="/admin"
+                    className="text-red-500 cursor-pointer hover:underline text-sm dark:text-red-400"
+                  >
+                    Admin
+                  </Link>
+                )}
               </div>
             )}
 
-            {/* Theme Toggle Button */}
             <button
               onClick={toggleTheme}
               className="px-3 py-2 rounded-md text-sm font-medium text-gray-500 hover:bg-gray-700 hover:text-white dark:text-gray-400 dark:hover:bg-gray-800"
             >
               {theme === "light" ? "🌙" : "🌞"}
-              {/* Show moon for light theme and sun for dark theme */}
             </button>
 
-            {/* Mobile Menu Toggle */}
             <div className="md:hidden">
               <button
                 onClick={handleToggle}

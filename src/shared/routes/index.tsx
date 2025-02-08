@@ -7,6 +7,8 @@ import ProtectedRoute from "../components/ProtectedRoute";
 import NotFound from "../pages/NotFound";
 import UserProfilePage from "../pages/UserProfile/UserProfilePage";
 import Todo from "../../features/todo-list/pages/Todo";
+import Products from "../../features/ecommerce/pages/Product";
+import Admin from "../../features/ecommerce/pages/Admin";
 
 export const router = createBrowserRouter([
   {
@@ -45,6 +47,19 @@ export const router = createBrowserRouter([
       {
         path: "/todo-app",
         element: <Todo />,
+      },
+
+      {
+        path: "/e-commerce",
+        element: <Products />,
+      },
+      {
+        path: "/admin",
+        element: (
+          <ProtectedRoute allowedRoles="ADMIN">
+            <Admin />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
