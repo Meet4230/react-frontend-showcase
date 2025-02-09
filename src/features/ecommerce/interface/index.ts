@@ -32,3 +32,21 @@ export interface Category {
   name: string;
   owner: string;
 }
+
+export interface CartItem {
+  _id: string;
+  product: Product;
+  quantity: number;
+}
+
+export interface Cart {
+  _id: string;
+  items: CartItem[];
+  cartTotal: number;
+  discountedTotal: number;
+}
+
+export interface UpdateCartItem {
+  productID: string;
+  quantity: number;
+}

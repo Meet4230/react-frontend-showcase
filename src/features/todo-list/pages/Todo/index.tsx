@@ -12,6 +12,7 @@ import { useToast } from "../../components/ui/toast";
 import { useCreateTodo } from "../../hooks/useCreateTodo";
 import { useDeleteTodo } from "../../hooks/useDeleteTodo";
 import { useUpdateTodo } from "../../hooks/useUpdateTodo";
+import Header from "../../../ecommerce/components/ui/Header";
 
 export default function Todo() {
   const [title, setTitle] = useState("");
@@ -103,9 +104,10 @@ export default function Todo() {
 
   return (
     <div className="container h-screen mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white mt-[33px]">
+      {/* <h1 className="text-4xl font-bold text-center mb-8 text-gray-800 dark:text-white mt-[33px]">
         My Todo List
-      </h1>
+      </h1> */}
+      <Header headTitle="TODO LIST" showSearch={false} showCart={false} />
 
       <Card className="mb-8">
         <CardContent>

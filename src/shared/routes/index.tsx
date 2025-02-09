@@ -9,6 +9,7 @@ import UserProfilePage from "../pages/UserProfile/UserProfilePage";
 import Todo from "../../features/todo-list/pages/Todo";
 import Admin from "../../features/ecommerce/pages/Admin";
 import HomePage from "../../features/ecommerce/pages/HomePage";
+import ProductView from "../../features/ecommerce/pages/Product";
 
 export const router = createBrowserRouter([
   {
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: "/e-commerce",
         element: <HomePage />,
+      },
+      {
+        path: "/product/:id",
+        element: <ProductView />,
       },
       {
         path: "/admin",
