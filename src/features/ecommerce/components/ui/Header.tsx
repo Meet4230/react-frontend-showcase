@@ -5,8 +5,10 @@ import {
   MagnifyingGlassIcon,
   ShoppingCartIcon,
   XMarkIcon,
+  UserIcon,
 } from "@heroicons/react/24/outline";
 import type { Cart } from "../../interface";
+import { Link } from "react-router-dom";
 
 export default function Header({
   onSearch,
@@ -61,6 +63,13 @@ export default function Header({
             </button>
           </div>
         )}
+        <div>
+          <Link to="/e-commerce/account">
+            <button className="p-2 rounded-full left-[430px] bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 relative">
+              <UserIcon className="h-6 w-6" />
+            </button>
+          </Link>
+        </div>
         {showCart && (
           <button
             onClick={() => setIsCartOpen(true)}

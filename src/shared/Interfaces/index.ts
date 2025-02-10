@@ -20,10 +20,11 @@ export interface DashboardCardProps {
 export interface IButtonProps {
   children: React.ReactNode;
   onClick?: () => void;
-  variant: "primary" | "secondary" | "danger";
-  className: string;
-  type: "button" | "submit";
-  disabled: boolean;
+  variant: "primary" | "secondary" | "danger" | "ghost" | "link";
+  className?: string;
+  type?: "button" | "submit";
+  disabled?: boolean;
+  asChild?: boolean;
 }
 
 export interface FooterLink {

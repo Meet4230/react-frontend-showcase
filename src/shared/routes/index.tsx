@@ -10,6 +10,7 @@ import Todo from "../../features/todo-list/pages/Todo";
 import Admin from "../../features/ecommerce/pages/Admin";
 import HomePage from "../../features/ecommerce/pages/HomePage";
 import ProductView from "../../features/ecommerce/pages/Product";
+import AccountDashboard from "../../features/ecommerce/pages/AccountDashboard";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,10 @@ export const router = createBrowserRouter([
             <Admin />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/e-commerce/account",
+        element: <AccountDashboard />,
       },
     ],
   },
