@@ -73,15 +73,15 @@ export default function Header({
         {showCart && (
           <button
             onClick={() => setIsCartOpen(true)}
-            className="p-2 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300 relative"
+            className="relative p-3 rounded-full bg-blue-500 text-white hover:bg-blue-600 transition-colors duration-300"
             aria-label="Open shopping cart"
           >
-            <ShoppingCartIcon className="h-6 w-6" />
-            {cartCount && cartCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
+            {cartCount > 0 && (
+              <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full">
                 {cartCount}
               </span>
             )}
+            <ShoppingCartIcon className="h-6 w-6" />
           </button>
         )}
       </div>
